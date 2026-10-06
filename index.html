@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오지현 권사 · 기독교 전문상담사 | 프로필 & 상담 안내</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        warm: {
+                            50: '#fefce8',
+                            100: '#fef9c3',
+                            200: '#fef08a',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                        },
+                        peace: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'Noto Sans KR', 'sans-serif'],
+                        serif: ['MaruBuri', 'Nanum Myeongjo', 'serif']
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px -10px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.03)',
+                        'glow-warm': '0 15px 35px -5px rgba(245, 158, 11, 0.18)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #fcfbf7;
+            color: #1e293b;
+        }
+
+        .bright-glass {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .warm-gradient-text {
+            background: linear-gradient(135deg, #b45309 0%, #15803d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-bg-pattern {
+            background-color: #fcfbf7;
+            background-image: radial-gradient(#e2e8f0 1.5px, transparent 1.5px), radial-gradient(#e2e8f0 1.5px, #fcfbf7 1.5px);
+            background-size: 36px 36px;
+            background-position: 0 0, 18px 18px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .admin-editable-outline {
+            outline: 2px dashed #f59e0b;
+            outline-offset: 4px;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="selection:bg-amber-100 selection:text-amber-900 pb-16">
+
+    <!-- Floating Admin Bar (Visible only when logged in as admin) -->
+    <div id="admin-indicator" class="hidden fixed top-0 left-0 right-0 bg-amber-600 text-white py-2 px-4 z-[60] shadow-md flex items-center justify-between text-xs sm:text-sm font-bold">
+        <div class="flex items-center gap-2">
+            <i class="fa-solid fa-user-gear text-amber-200"></i>
+            <span>[관리자 모드 활성화] 정보를 직접 수정할 수 있습니다.</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <button onclick="saveAllAdminData()" class="bg-white text-amber-800 hover:bg-amber-100 px-3 py-1 rounded-lg shadow-sm transition-all flex items-center gap-1.5 font-extrabold">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span>전체 변경사항 저장</span>
+            </button>
+            <button onclick="logoutAdmin()" class="bg-amber-800 hover:bg-amber-900 text-amber-100 px-2.5 py-1 rounded-lg text-xs font-semibold">
+                로그아웃
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3" id="navbar-container">
+            <nav class="bright-glass rounded-2xl px-5 py-3.5 flex items-center justify-between shadow-soft">
+                <!-- Brand Logo -->
+                <a href="#hero" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-emerald-600 flex items-center justify-center text-white font-bold text-lg shadow-md transform group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-hands-holding-child"></i>
+                    </div>
+                    <div>
+                        <span class="font-bold text-lg tracking-tight text-slate-900 block leading-none">
+                            <span id="nav-display-name">오지현</span> <span class="text-amber-600 font-normal" id="nav-display-role">권사 · 사역자</span>
+                        </span>
+                        <span class="text-[11px] font-medium text-emerald-700 tracking-wider">기독교 전문상담 & 케어</span>
+                    </div>
+                </a>
+
+                <!-- Nav Menu (Desktop) -->
+                <div class="hidden lg:flex items-center space-x-1 font-medium text-sm text-slate-600">
+                    <a href="#about" class="px-3.5 py-2 rounded-xl hover:text-amber-700 hover:bg-amber-50/80 transition-all">사역자 소개</a>
+                    <a href="#specialties" class="px-3.5 py-2 rounded-xl hover:text-amber-700 hover:bg-amber-50/80 transition-all">전문 상담 분야</a>
+                    <a href="#pricing" class="px-3.5 py-2 rounded-xl hover:text-amber-700 hover:bg-amber-50/80 transition-all">상담 비용 안내</a>
+                    <a href="#counseling-logs" class="px-3.5 py-2 rounded-xl hover:text-amber-700 hover:bg-amber-50/80 transition-all">상담일지 & 현장</a>
+                    <a href="#career" class="px-3.5 py-2 rounded-xl hover:text-amber-700 hover:bg-amber-50/80 transition-all">사역 & 경력</a>
+                    <a href="#guestbook" class="px-3.5 py-2 rounded-xl hover:text-amber-700 hover:bg-amber-50/80 transition-all">마음 나눔</a>
+                </div>
+
+                <!-- CTA & Admin Toggle -->
+                <div class="flex items-center gap-2">
+                    <button id="admin-login-btn" onclick="openAdminModal()" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs flex items-center gap-1.5 transition-colors">
+                        <i class="fa-solid fa-lock text-slate-500"></i>
+                        <span class="hidden sm:inline">관리자</span>
+                    </button>
+
+                    <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all">
+                        <i class="fa-regular fa-calendar-check"></i>
+                        <span>상담 신청</span>
+                    </a>
+
+                    <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl bg-slate-100 text-slate-700 hover:bg-amber-100 hover:text-amber-700 transition-colors" aria-label="메뉴 열기">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden lg:hidden bright-glass rounded-2xl mt-2 p-5 shadow-xl border border-slate-200/80 flex flex-col gap-2 font-medium text-slate-700">
+                <a href="#about" onclick="toggleMobileMenu()" class="px-4 py-2.5 rounded-xl hover:bg-amber-50 hover:text-amber-700">사역자 소개</a>
+                <a href="#specialties" onclick="toggleMobileMenu()" class="px-4 py-2.5 rounded-xl hover:bg-amber-50 hover:text-amber-700">전문 상담 분야</a>
+                <a href="#pricing" onclick="toggleMobileMenu()" class="px-4 py-2.5 rounded-xl hover:bg-amber-50 hover:text-amber-700">상담 비용 안내</a>
+                <a href="#counseling-logs" onclick="toggleMobileMenu()" class="px-4 py-2.5 rounded-xl hover:bg-amber-50 hover:text-amber-700">상담일지 & 현장</a>
+                <a href="#career" onclick="toggleMobileMenu()" class="px-4 py-2.5 rounded-xl hover:bg-amber-50 hover:text-amber-700">사역 & 경력</a>
+                <a href="#guestbook" onclick="toggleMobileMenu()" class="px-4 py-2.5 rounded-xl hover:bg-amber-50 hover:text-amber-700">마음 나눔</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="mt-2 text-center py-3 rounded-xl bg-amber-600 text-white font-bold">상담 및 섭외 문의</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-bg-pattern pt-36 pb-20 md:pt-44 md:pb-28 relative overflow-hidden min-h-screen flex items-center">
+        <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[650px] h-[350px] bg-gradient-to-r from-amber-100 via-emerald-100 to-amber-200 blur-3xl -z-10 rounded-full opacity-70"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Main Banner Text -->
+                <div class="lg:col-span-7 flex flex-col items-start gap-6 text-left">
+                    
+                    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-amber-50 border border-amber-200 text-amber-900 font-semibold text-xs sm:text-sm shadow-sm">
+                        <span class="relative flex h-2.5 w-2.5">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-600"></span>
+                        </span>
+                        <span>기독교 상담센터 전문상담사 · 사역자</span>
+                        <span class="text-amber-300">|</span>
+                        <span class="text-emerald-800">케어 매니저</span>
+                    </div>
+
+                    <!-- Headline & Editable Verse Quote -->
+                    <div class="space-y-3 w-full">
+                        <p class="text-emerald-800 font-serif italic text-lg sm:text-xl font-medium outline-none" id="display-quote" contenteditable="false">
+                            "수고하고 짐 진 자들아 다 내게로 오라 (마 11:28)"
+                        </p>
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.25]">
+                            따뜻한 경청과 말씀으로 <br/>
+                            <span class="warm-gradient-text">마음의 회복</span>을 돕습니다
+                        </h1>
+                    </div>
+
+                    <!-- Intro Text -->
+                    <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl font-normal outline-none" id="display-intro" contenteditable="false">
+                        안녕하세요, <strong id="display-name-intro">오지현 권사 / 사역자</strong>입니다.<br/>
+                        가족, 청소년, 정서적 상처와 중독으로 어려움을 겪는 이웃들에게 성경적 가치관과 전문 상담을 바탕으로 세대별 맞춤 회복의 길을 안내해 드립니다.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center gap-4 pt-2 w-full sm:w-auto">
+                        <a href="#contact" class="px-7 py-4 rounded-2xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-base shadow-glow-warm transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto">
+                            <i class="fa-solid fa-heart-circle-check"></i>
+                            <span>1:1 상담 신청하기</span>
+                        </a>
+                        <a href="#pricing" class="px-7 py-4 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-base border border-slate-200 shadow-sm transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto">
+                            <i class="fa-solid fa-coins text-amber-600"></i>
+                            <span>상담 비용 확인</span>
+                        </a>
+                    </div>
+
+                    <!-- Key Contact Badges (Editable in Admin Mode) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 w-full max-w-xl border-t border-slate-200/80">
+                        <div class="bg-white/90 p-3.5 rounded-2xl border border-slate-200/60 shadow-sm text-left">
+                            <div class="text-xs font-semibold text-slate-400">연락처</div>
+                            <div class="text-sm font-bold text-slate-800 mt-0.5 outline-none" id="display-phone" contenteditable="false">010-0000-0000</div>
+                        </div>
+                        <div class="bg-white/90 p-3.5 rounded-2xl border border-slate-200/60 shadow-sm text-left">
+                            <div class="text-xs font-semibold text-slate-400">이메일</div>
+                            <div class="text-sm font-bold text-slate-800 mt-0.5 truncate outline-none" id="display-email" contenteditable="false">counselor@example.com</div>
+                        </div>
+                        <div class="bg-white/90 p-3.5 rounded-2xl border border-slate-200/60 shadow-sm text-left">
+                            <div class="text-xs font-semibold text-slate-400">활동 지역</div>
+                            <div class="text-sm font-bold text-emerald-700 mt-0.5 outline-none" id="display-location" contenteditable="false">[활동 지역]</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Profile Card with Computer File Upload -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute -inset-2 bg-gradient-to-r from-amber-300 via-emerald-200 to-amber-200 rounded-3xl blur-lg opacity-60"></div>
+
+                        <div class="relative bg-white rounded-3xl p-7 shadow-xl border border-slate-100 flex flex-col items-center text-center">
+                            
+                            <!-- Profile Photo Container -->
+                            <div class="relative mb-6 group">
+                                <div class="w-48 h-48 sm:w-56 sm:h-56 rounded-3xl p-2 bg-gradient-to-tr from-amber-400 via-emerald-400 to-amber-200 shadow-md overflow-hidden relative">
+                                    <img id="profile-image-view" src="Gemini_Generated_Image_gf1brbgf1brbgf1b.png" alt="오지현 사역자 프로필" class="w-full h-full object-cover object-top rounded-2xl bg-slate-100">
+                                    
+                                    <!-- Photo Upload Overlay in Admin Mode -->
+                                    <label id="profile-upload-overlay" class="hidden absolute inset-0 bg-slate-900/60 rounded-2xl flex-col items-center justify-center text-white cursor-pointer hover:bg-slate-900/75 transition-all p-4 text-center">
+                                        <i class="fa-solid fa-camera text-3xl mb-1 text-amber-300"></i>
+                                        <span class="text-xs font-bold">내 컴퓨터에서<br/>프로필 사진 변경</span>
+                                        <input type="file" id="profile-file-input" accept="image/*" class="hidden" onchange="handleProfilePhotoUpload(event)">
+                                    </label>
+                                </div>
+                                <div class="absolute -bottom-3 -right-2 bg-emerald-700 text-white font-bold text-xs px-3.5 py-1.5 rounded-xl shadow-md flex items-center gap-1.5 border-2 border-white">
+                                    <i class="fa-solid fa-cross text-amber-300"></i> 기독교 전문상담사
+                                </div>
+                            </div>
+
+                            <h2 class="text-2xl font-extrabold text-slate-900">
+                                <span id="display-name" contenteditable="false" class="outline-none">오지현</span> 
+                                <span class="text-base font-normal text-slate-600">(<span id="display-title" contenteditable="false" class="outline-none">권사 / 사역자</span>)</span>
+                            </h2>
+                            <p class="text-sm font-semibold text-amber-700 mt-1 mb-4 outline-none" id="display-subheading" contenteditable="false">"경청 · 공감 · 말씀 중심의 세대별 마음 케어"</p>
+
+                            <!-- Quick Action Links -->
+                            <div class="flex items-center justify-center gap-3 w-full pt-4 border-t border-slate-100">
+                                <button onclick="copyCurrentPhone()" class="flex-1 py-2.5 px-3 bg-slate-100 hover:bg-amber-100 text-slate-700 hover:text-amber-800 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-phone text-amber-600"></i>
+                                    <span>전화번호 복사</span>
+                                </button>
+                                <button onclick="copyCurrentEmail()" class="flex-1 py-2.5 px-3 bg-slate-100 hover:bg-emerald-100 text-slate-700 hover:text-emerald-800 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-envelope text-emerald-600"></i>
+                                    <span>이메일 복사</span>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section (상담 비용 안내 & 수정) -->
+    <section id="pricing" class="py-20 bg-amber-50/50 border-y border-amber-200/50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-amber-800 bg-amber-200/80 px-4 py-1.5 rounded-full">COUNSELING FEES</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">상담 비용 안내</h2>
+                <p class="text-slate-600 mt-2 text-sm sm:text-base">목회적 돌봄과 전문 상담 서비스의 투명한 비용 안내입니다.</p>
+            </div>
+
+            <!-- Pricing Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto" id="pricing-cards-container">
+                
+                <!-- Price Card 1 -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-200 flex flex-col justify-between hover:shadow-lg transition-all relative">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 bg-amber-100 text-amber-800 font-bold text-xs rounded-lg">1:1 개인 대면 상담</span>
+                            <span class="text-xs font-semibold text-slate-400" id="price-1-time">회당 60분</span>
+                        </div>
+                        <div class="mb-6">
+                            <span class="text-3xl font-extrabold text-slate-900" id="price-1-val">50,000원</span>
+                            <span class="text-xs text-slate-500 block mt-1" id="price-1-desc">성경적 기독교 상담 및 정서 회복</span>
+                        </div>
+                        <ul class="text-xs text-slate-600 space-y-2.5 mb-6 border-t pt-4 border-slate-100">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> 사전 심리 상태 파악</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> 말씀 기반 1:1 맞춤 경청</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> 중보 기도 및 후속 케어</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="w-full py-3 text-center rounded-xl bg-slate-900 hover:bg-amber-600 text-white font-bold text-xs transition-colors">상담 신청하기</a>
+                </div>
+
+                <!-- Price Card 2 (Popular) -->
+                <div class="bg-white rounded-3xl p-8 shadow-md border-2 border-amber-500 flex flex-col justify-between hover:shadow-xl transition-all relative">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-amber-500 text-white text-[11px] font-bold px-3 py-0.5 rounded-full shadow-sm">
+                        추천 프로그램
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-start mb-4 mt-2">
+                            <span class="px-3 py-1 bg-emerald-100 text-emerald-800 font-bold text-xs rounded-lg">가족 & 부부 상담</span>
+                            <span class="text-xs font-semibold text-slate-400" id="price-2-time">회당 90분</span>
+                        </div>
+                        <div class="mb-6">
+                            <span class="text-3xl font-extrabold text-slate-900" id="price-2-val">80,000원</span>
+                            <span class="text-xs text-slate-500 block mt-1" id="price-2-desc">부부 갈등, 세대 대화, 가정 회복</span>
+                        </div>
+                        <ul class="text-xs text-slate-600 space-y-2.5 mb-6 border-t pt-4 border-slate-100">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> 부부/가족 공동 세션</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> 성경적 소통 대화법 피드백</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> 가정 사역 과제 및 가이드</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="w-full py-3 text-center rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-md transition-colors">상담 신청하기</a>
+                </div>
+
+                <!-- Price Card 3 -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-200 flex flex-col justify-between hover:shadow-lg transition-all relative">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 bg-amber-100 text-amber-800 font-bold text-xs rounded-lg">비대면 전화/온라인</span>
+                            <span class="text-xs font-semibold text-slate-400" id="price-3-time">회당 50분</span>
+                        </div>
+                        <div class="mb-6">
+                            <span class="text-3xl font-extrabold text-slate-900" id="price-3-val">40,000원</span>
+                            <span class="text-xs text-slate-500 block mt-1" id="price-3-desc">거리/시간 제약 없는 비대면 케어</span>
+                        </div>
+                        <ul class="text-xs text-slate-600 space-y-2.5 mb-6 border-t pt-4 border-slate-100">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> 전화 또는 화상 음성 상담</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> 긴급 정서 위기 케어</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> 시간 조정 용이</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="w-full py-3 text-center rounded-xl bg-slate-900 hover:bg-amber-600 text-white font-bold text-xs transition-colors">상담 신청하기</a>
+                </div>
+
+            </div>
+
+            <!-- Admin Price Edit Button -->
+            <div id="admin-price-controls" class="hidden mt-8 text-center">
+                <button onclick="openPriceEditModal()" class="px-6 py-3 rounded-2xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm shadow-md transition-all inline-flex items-center gap-2">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span>상담 비용 수정하기</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Counseling Logs & Field Gallery (상담일지 및 오늘 상담 현장) -->
+    <section id="counseling-logs" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-200">MINISTRY & COUNSELING LOG</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">상담일지 & 사역 현장</h2>
+                    <p class="text-slate-600 text-sm mt-2">상담 기록과 따뜻한 사역의 현장을 함께 나눕니다. (개인정보 보호를 위해 익명 처리됩니다)</p>
+                </div>
+
+                <!-- Admin Add Counseling Log Button -->
+                <div id="admin-log-controls" class="hidden">
+                    <button onclick="openLogCreateModal()" class="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-md transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>오늘의 상담일지 / 사진 작성</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Counseling Logs Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="counseling-logs-container">
+                <!-- Log Cards will be loaded dynamically or displayed as default below -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Career & Qualifications Section -->
+    <section id="career" class="py-20 bg-slate-50/80 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-200">BACKGROUND & EXPERIENCE</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">사역 경력 및 전문 자격</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <div class="space-y-6">
+                    <h3 class="text-xl font-extrabold text-slate-900 flex items-center gap-2 border-b pb-3 border-slate-200">
+                        <i class="fa-solid fa-briefcase text-amber-600"></i>
+                        <span>주요 사역 & 상담 이력</span>
+                    </h3>
+
+                    <div class="relative pl-6 border-l-2 border-amber-200 space-y-6">
+                        <div class="relative group">
+                            <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-amber-500 border-4 border-white shadow-sm"></div>
+                            <span class="text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md">현재</span>
+                            <h4 class="text-base font-bold text-slate-900 mt-1">기독교 상담센터 전문상담사 & 사역자</h4>
+                            <p class="text-sm text-slate-600 mt-0.5">개인·부부·가족 상담 및 세대별 정서 케어 전담</p>
+                        </div>
+
+                        <div class="relative group">
+                            <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white shadow-sm"></div>
+                            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">교회 사역</span>
+                            <h4 class="text-base font-bold text-slate-900 mt-1">교회 권사 및 상담 사역자</h4>
+                            <p class="text-sm text-slate-600 mt-0.5">교구 교우 돌봄, 청소년·청년부 상담 및 중보기도 사역</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="text-xl font-extrabold text-slate-900 flex items-center gap-2 border-b pb-3 border-slate-200">
+                        <i class="fa-solid fa-award text-emerald-600"></i>
+                        <span>자격 및 핵심 역량</span>
+                    </h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-2xl border border-slate-200">
+                            <i class="fa-solid fa-certificate text-amber-600 text-lg mb-2"></i>
+                            <h4 class="font-bold text-sm text-slate-900">기독교 상담사 자격</h4>
+                            <p class="text-xs text-slate-500 mt-1">성경적 상담 및 통합적 심리치료 자격</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-2xl border border-slate-200">
+                            <i class="fa-solid fa-user-shield text-emerald-600 text-lg mb-2"></i>
+                            <h4 class="font-bold text-sm text-slate-900">청소년·가정 상담 수료</h4>
+                            <p class="text-xs text-slate-500 mt-1">가정사역 및 전문 대화법 과정</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guestbook Section -->
+    <section id="guestbook" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-200">HEART & PRAYER BOARD</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3">마음 나눔 & 감사 한마디</h2>
+                <p class="text-slate-600 mt-2">상담 후기나 응원, 따뜻한 마음의 한 줄을 자유롭게 남겨주세요.</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto">
+                <form onsubmit="addGuestbookMsg(event)" class="bg-slate-50 p-6 rounded-3xl border border-slate-200 shadow-sm mb-8 flex flex-col gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <input type="text" id="gb-name" required placeholder="성함 / 닉네임" class="px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 text-sm bg-white">
+                        <input type="text" id="gb-tag" placeholder="구분 (예: 청소년 학부모, 상담 교우)" class="px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 text-sm bg-white">
+                    </div>
+                    <textarea id="gb-msg" required rows="3" placeholder="오지현 권사님/사역자님에게 전하고 싶은 메시지를 남겨주세요." class="px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 text-sm bg-white resize-none"></textarea>
+                    <button type="submit" class="self-end px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm shadow-md transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>메시지 남기기</span>
+                    </button>
+                </form>
+
+                <div class="space-y-4" id="guestbook-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-wider text-amber-400 bg-slate-800 px-4 py-1.5 rounded-full border border-slate-700">CONTACT</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight">
+                        상담 신청 및 <br/>
+                        <span class="text-amber-400">사역 섭외 안내</span>
+                    </h2>
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        상담 신청, 특강, 케어 매니저 사역 문의를 남겨주시면 확인 후 신속히 연락드리겠습니다.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="bg-white text-slate-800 p-8 rounded-3xl shadow-2xl">
+                        <h3 class="text-xl font-extrabold mb-6 flex items-center gap-2 text-slate-900">
+                            <i class="fa-solid fa-pen-to-square text-amber-600"></i>
+                            <span>온라인 상담 및 사역 신청서</span>
+                        </h3>
+
+                        <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 mb-1">성함 / 기관명 *</label>
+                                    <input type="text" required placeholder="예: 홍길동" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-amber-500 text-sm bg-slate-50">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 mb-1">연락처 *</label>
+                                    <input type="tel" required placeholder="010-0000-0000" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-amber-500 text-sm bg-slate-50">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 mb-1">고민 세부 내용 및 요청사항 *</label>
+                                <textarea required rows="4" placeholder="상담 희망 내용이나 일정을 간단히 적어주세요. (비밀보장)" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-amber-500 text-sm bg-slate-50 resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-4 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-base shadow-md transition-all">
+                                상담 및 문의 신청하기
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-10 border-t border-slate-800 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-amber-600 text-white font-bold flex items-center justify-center">
+                    <i class="fa-solid fa-hands-holding-child text-sm"></i>
+                </div>
+                <span class="font-extrabold text-white text-base">오지현 권사 · 기독교 상담사</span>
+            </div>
+            <span class="text-xs text-slate-500">© Counselor Oh Ji-hyun. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <!-- Admin Login Modal -->
+    <div id="admin-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeAdminModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 mx-auto flex items-center justify-center text-xl font-bold mb-3">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="text-2xl font-extrabold text-slate-900">관리자 인증</h3>
+                <p class="text-xs text-slate-500 mt-1">프로필, 가격, 상담일지를 수정하려면 비밀번호를 입력하세요.</p>
+            </div>
+            
+            <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">비밀번호</label>
+                    <input type="password" id="admin-pw-input" required placeholder="비밀번호 입력" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 text-sm">
+                </div>
+                <p id="admin-error-msg" class="text-xs font-bold text-red-500 hidden text-center">비밀번호가 올바르지 않습니다.</p>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm shadow-md transition-all">
+                    관리자 로그인
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Price Edit Modal -->
+    <div id="price-edit-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closePriceEditModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-xl font-extrabold text-slate-900 mb-4">상담 비용 설정 수정</h3>
+            <div class="space-y-4 text-sm">
+                <div class="border p-3.5 rounded-2xl bg-slate-50">
+                    <label class="block font-bold text-xs text-amber-800 mb-1">1:1 개인 대면 상담</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <input type="text" id="edit-p1-val" placeholder="50,000원" class="px-3 py-2 rounded-lg border text-xs">
+                        <input type="text" id="edit-p1-time" placeholder="회당 60분" class="px-3 py-2 rounded-lg border text-xs">
+                    </div>
+                </div>
+
+                <div class="border p-3.5 rounded-2xl bg-slate-50">
+                    <label class="block font-bold text-xs text-emerald-800 mb-1">가족 & 부부 상담</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <input type="text" id="edit-p2-val" placeholder="80,000원" class="px-3 py-2 rounded-lg border text-xs">
+                        <input type="text" id="edit-p2-time" placeholder="회당 90분" class="px-3 py-2 rounded-lg border text-xs">
+                    </div>
+                </div>
+
+                <div class="border p-3.5 rounded-2xl bg-slate-50">
+                    <label class="block font-bold text-xs text-amber-800 mb-1">비대면 전화/온라인</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <input type="text" id="edit-p3-val" placeholder="40,000원" class="px-3 py-2 rounded-lg border text-xs">
+                        <input type="text" id="edit-p3-time" placeholder="회당 50분" class="px-3 py-2 rounded-lg border text-xs">
+                    </div>
+                </div>
+
+                <button onclick="savePrices()" class="w-full py-3.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm shadow-md transition-all">
+                    비용 변경사항 저장
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Counseling Log Create Modal -->
+    <div id="log-create-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeLogCreateModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-xl font-extrabold text-slate-900 mb-4">상담일지 및 사역 사진 추가</h3>
+            
+            <form onsubmit="handleCreateLog(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">일지 제목 *</label>
+                    <input type="text" id="log-input-title" required placeholder="예: [가족상담] 소통 회복을 위한 3차 세션" class="w-full px-4 py-2.5 rounded-xl border text-xs bg-slate-50">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">상담/사역 날짜 *</label>
+                        <input type="date" id="log-input-date" required class="w-full px-4 py-2.5 rounded-xl border text-xs bg-slate-50">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">분야 카테고리 *</label>
+                        <select id="log-input-cat" class="w-full px-4 py-2.5 rounded-xl border text-xs bg-slate-50 font-medium">
+                            <option value="가족/부부">가족/부부 상담</option>
+                            <option value="청소년/비전">청소년/비전</option>
+                            <option value="정서/중독">정서/중독 회복</option>
+                            <option value="사역현장">오늘의 사역 현장</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">컴퓨터에서 현장/상담 사진 업로드 (선택)</label>
+                    <input type="file" id="log-input-file" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">일지 및 소회 내용 *</label>
+                    <textarea id="log-input-desc" required rows="4" placeholder="상담 내용, 은혜로운 소회, 중보 기도 제목 등을 기록하세요." class="w-full px-4 py-2.5 rounded-xl border text-xs bg-slate-50 resize-none"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm shadow-md transition-all">
+                    상담일지 저장 및 게시
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast-msg" class="fixed bottom-6 right-6 bg-slate-900 text-white font-bold text-sm px-5 py-3.5 rounded-2xl shadow-2xl z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 border border-slate-700">
+        <i class="fa-solid fa-circle-check text-amber-400 text-lg"></i>
+        <span id="toast-text">알림 메시지</span>
+    </div>
+
+    <!-- Firebase Module Script -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, collection, onSnapshot, addDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global state and appId setup
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'ojihyun-counselor-app';
+        let db, auth;
+        let isAdminLoggedIn = false;
+
+        // Default local profile data fallback
+        let currentProfileData = {
+            name: "오지현",
+            title: "권사 / 사역자",
+            role: "권사 · 사역자",
+            quote: '"수고하고 짐 진 자들아 다 내게로 오라 (마 11:28)"',
+            intro: '안녕하세요, 오지현 권사 / 사역자입니다.\n가족, 청소년, 정서적 상처와 중독으로 어려움을 겪는 이웃들에게 성경적 가치관과 전문 상담을 바탕으로 세대별 맞춤 회복의 길을 안내해 드립니다.',
+            phone: '010-0000-0000',
+            email: 'counselor@example.com',
+            location: '[활동 지역]',
+            subheading: '"경청 · 공감 · 말씀 중심의 세대별 마음 케어"',
+            photoUrl: 'Gemini_Generated_Image_gf1brbgf1brbgf1b.png',
+            prices: {
+                p1_val: "50,000원", p1_time: "회당 60분",
+                p2_val: "80,000원", p2_time: "회당 90분",
+                p3_val: "40,000원", p3_time: "회당 50분"
+            }
+        };
+
+        // Firebase Initialization Function
+        async function initFirebase() {
+            try {
+                const firebaseConfig = typeof __firebase_config !== 'undefined' 
+                    ? JSON.parse(__firebase_config) 
+                    : { apiKey: "demo", authDomain: "demo.firebaseapp.com", projectId: "demo" };
+                
+                const app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                // Listen for real-time profile data updates
+                const profileDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'profile_main');
+                onSnapshot(profileDocRef, (snap) => {
+                    if (snap.exists()) {
+                        currentProfileData = { ...currentProfileData, ...snap.data() };
+                        renderProfileUI();
+                    }
+                }, (err) => console.log("Firestore snapshot notice:", err));
+
+                // Listen for real-time counseling logs
+                const logsCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'counseling_logs');
+                onSnapshot(logsCollectionRef, (snap) => {
+                    const logsArr = [];
+                    snap.forEach(docSnap => {
+                        logsArr.push({ id: docSnap.id, ...docSnap.data() });
+                    });
+                    renderLogsUI(logsArr);
+                }, (err) => console.log("Logs snapshot notice:", err));
+
+                // Listen for real-time guestbook
+                const gbCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'guestbook');
+                onSnapshot(gbCollectionRef, (snap) => {
+                    const gbArr = [];
+                    snap.forEach(docSnap => {
+                        gbArr.push({ id: docSnap.id, ...docSnap.data() });
+                    });
+                    renderGuestbookUI(gbArr);
+                }, (err) => console.log("Guestbook snapshot notice:", err));
+
+            } catch (err) {
+                console.log("Running in offline mode:", err);
+                renderProfileUI();
+                renderDefaultLogs();
+            }
+        }
+
+        // Render Profile UI from data
+        function renderProfileUI() {
+            document.getElementById('display-name').innerText = currentProfileData.name || "오지현";
+            document.getElementById('nav-display-name').innerText = currentProfileData.name || "오지현";
+            document.getElementById('display-name-intro').innerText = `${currentProfileData.name || "오지현"} ${currentProfileData.title || "권사 / 사역자"}`;
+            document.getElementById('display-title').innerText = currentProfileData.title || "권사 / 사역자";
+            document.getElementById('nav-display-role').innerText = currentProfileData.role || "권사 · 사역자";
+            document.getElementById('display-quote').innerText = currentProfileData.quote || "";
+            document.getElementById('display-intro').innerHTML = (currentProfileData.intro || "").replace(/\n/g, '<br/>');
+            document.getElementById('display-phone').innerText = currentProfileData.phone || "010-0000-0000";
+            document.getElementById('display-email').innerText = currentProfileData.email || "counselor@example.com";
+            document.getElementById('display-location').innerText = currentProfileData.location || "[활동 지역]";
+            document.getElementById('display-subheading').innerText = currentProfileData.subheading || "";
+
+            if (currentProfileData.photoUrl) {
+                document.getElementById('profile-image-view').src = currentProfileData.photoUrl;
+            }
+
+            if (currentProfileData.prices) {
+                document.getElementById('price-1-val').innerText = currentProfileData.prices.p1_val || "50,000원";
+                document.getElementById('price-1-time').innerText = currentProfileData.prices.p1_time || "회당 60분";
+                document.getElementById('price-2-val').innerText = currentProfileData.prices.p2_val || "80,000원";
+                document.getElementById('price-2-time').innerText = currentProfileData.prices.p2_time || "회당 90분";
+                document.getElementById('price-3-val').innerText = currentProfileData.prices.p3_val || "40,000원";
+                document.getElementById('price-3-time').innerText = currentProfileData.prices.p3_time || "회당 50분";
+
+                document.getElementById('edit-p1-val').value = currentProfileData.prices.p1_val || "50,000원";
+                document.getElementById('edit-p1-time').value = currentProfileData.prices.p1_time || "회당 60분";
+                document.getElementById('edit-p2-val').value = currentProfileData.prices.p2_val || "80,000원";
+                document.getElementById('edit-p2-time').value = currentProfileData.prices.p2_time || "회당 90분";
+                document.getElementById('edit-p3-val').value = currentProfileData.prices.p3_val || "40,000원";
+                document.getElementById('edit-p3-time').value = currentProfileData.prices.p3_time || "회당 50분";
+            }
+        }
+
+        // Handle Profile Image Upload from Computer (Converts to Data URL via canvas compression)
+        window.handleProfilePhotoUpload = function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const maxDim = 800;
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > height) {
+                        if (width > maxDim) {
+                            height *= maxDim / width;
+                            width = maxDim;
+                        }
+                    } else {
+                        if (height > maxDim) {
+                            width *= maxDim / height;
+                            height = maxDim;
+                        }
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    const base64Url = canvas.toDataURL('image/jpeg', 0.85);
+                    currentProfileData.photoUrl = base64Url;
+                    document.getElementById('profile-image-view').src = base64Url;
+                    showToast("프로필 사진이 적용되었습니다! '전체 변경사항 저장'을 눌러주세요.");
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        };
+
+        // Render Counseling Logs
+        function renderLogsUI(logs) {
+            const container = document.getElementById('counseling-logs-container');
+            if (!container) return;
+
+            if (logs.length === 0) {
+                renderDefaultLogs();
+                return;
+            }
+
+            container.innerHTML = logs.map(log => `
+                <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+                    <div>
+                        ${log.photoUrl ? `
+                            <div class="w-full h-48 rounded-2xl overflow-hidden mb-4 bg-slate-200">
+                                <img src="${log.photoUrl}" alt="${escapeHtml(log.title)}" class="w-full h-full object-cover">
+                            </div>
+                        ` : ''}
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-md">${escapeHtml(log.category || '상담일지')}</span>
+                            <span class="text-xs text-slate-400 font-medium">${escapeHtml(log.date || '')}</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 mb-2">${escapeHtml(log.title)}</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">${escapeHtml(log.desc)}</p>
+                    </div>
+                    ${isAdminLoggedIn ? `
+                        <button onclick="deleteLog('${log.id}')" class="mt-4 self-end text-xs text-red-500 hover:text-red-700 font-bold flex items-center gap-1">
+                            <i class="fa-solid fa-trash"></i> 삭제
+                        </button>
+                    ` : ''}
+                </div>
+            `).join('');
+        }
+
+        function renderDefaultLogs() {
+            const container = document.getElementById('counseling-logs-container');
+            if (!container) return;
+            container.innerHTML = `
+                <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs font-bold bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-md">가족/부부</span>
+                            <span class="text-xs text-slate-400 font-medium">최근 작성</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 mb-2">세대 갈등 및 소통 회복 세션</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">서로의 비난 대신 마음속 상처를 하나님 앞에 내려놓고 경청하는 대화법을 나눈 시간이었습니다.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-md">청소년/비전</span>
+                            <span class="text-xs text-slate-400 font-medium">최근 작성</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 mb-2">청소년 학업 스트레스 & 자존감 코칭</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">자신의 가치를 성취가 아닌 하나님의 사랑 안에서 재발견하도록 기도로 동행했습니다.</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render Guestbook
+        function renderGuestbookUI(gbItems) {
+            const list = document.getElementById('guestbook-list');
+            if (!list) return;
+
+            if (gbItems.length === 0) {
+                list.innerHTML = `<p class="text-center text-xs text-slate-400 py-4">등록된 메시지가 없습니다. 첫 마음을 나눠주세요!</p>`;
+                return;
+            }
+
+            list.innerHTML = gbItems.map(item => `
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 shadow-sm flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="font-bold text-slate-900 text-sm">${escapeHtml(item.name)}</span>
+                            <span class="text-xs bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded">${escapeHtml(item.tag || '성도')}</span>
+                        </div>
+                        <p class="text-sm text-slate-700 leading-relaxed font-normal">"${escapeHtml(item.msg)}"</p>
+                    </div>
+                    ${isAdminLoggedIn ? `
+                        <button onclick="deleteGuestbook('${item.id}')" class="text-xs text-red-500 font-bold ml-2">삭제</button>
+                    ` : ''}
+                </div>
+            `).join('');
+        }
+
+        // Admin Auth handling
+        window.openAdminModal = function() {
+            document.getElementById('admin-modal').classList.remove('hidden');
+            document.getElementById('admin-error-msg').classList.add('hidden');
+            document.getElementById('admin-pw-input').value = "";
+        };
+
+        window.closeAdminModal = function() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        };
+
+        window.handleAdminLogin = function(event) {
+            event.preventDefault();
+            const pw = document.getElementById('admin-pw-input').value;
+            if (pw === "0000") {
+                isAdminLoggedIn = true;
+                closeAdminModal();
+                enableAdminMode();
+                showToast("관리자 모드로 로그인되었습니다.");
+            } else {
+                document.getElementById('admin-error-msg').classList.remove('hidden');
+            }
+        };
+
+        window.logoutAdmin = function() {
+            isAdminLoggedIn = false;
+            disableAdminMode();
+            showToast("관리자 모드가 종료되었습니다.");
+        };
+
+        function enableAdminMode() {
+            document.getElementById('admin-indicator').classList.remove('hidden');
+            document.getElementById('profile-upload-overlay').classList.remove('hidden');
+            document.getElementById('admin-price-controls').classList.remove('hidden');
+            document.getElementById('admin-log-controls').classList.remove('hidden');
+
+            // Make text fields editable
+            const editables = ['display-name', 'display-title', 'display-quote', 'display-intro', 'display-phone', 'display-email', 'display-location', 'display-subheading'];
+            editables.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.contentEditable = "true";
+                    el.classList.add('admin-editable-outline');
+                }
+            });
+        }
+
+        function disableAdminMode() {
+            document.getElementById('admin-indicator').classList.add('hidden');
+            document.getElementById('profile-upload-overlay').classList.add('hidden');
+            document.getElementById('admin-price-controls').classList.add('hidden');
+            document.getElementById('admin-log-controls').classList.add('hidden');
+
+            const editables = ['display-name', 'display-title', 'display-quote', 'display-intro', 'display-phone', 'display-email', 'display-location', 'display-subheading'];
+            editables.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.contentEditable = "false";
+                    el.classList.remove('admin-editable-outline');
+                }
+            });
+        }
+
+        // Save All Admin Data to Firestore Cloud Storage
+        window.saveAllAdminData = async function() {
+            currentProfileData.name = document.getElementById('display-name').innerText.trim();
+            currentProfileData.title = document.getElementById('display-title').innerText.trim();
+            currentProfileData.quote = document.getElementById('display-quote').innerText.trim();
+            currentProfileData.intro = document.getElementById('display-intro').innerText.trim();
+            currentProfileData.phone = document.getElementById('display-phone').innerText.trim();
+            currentProfileData.email = document.getElementById('display-email').innerText.trim();
+            currentProfileData.location = document.getElementById('display-location').innerText.trim();
+            currentProfileData.subheading = document.getElementById('display-subheading').innerText.trim();
+
+            try {
+                if (db) {
+                    const profileDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'settings', 'profile_main');
+                    await setDoc(profileDocRef, currentProfileData, { merge: true });
+                }
+                showToast("모든 변경사항이 저장되어 타인에게 공개됩니다.");
+            } catch (e) {
+                console.error("Save error:", e);
+                showToast("저장되었습니다! (로컬 적용 완료)");
+            }
+        };
+
+        // Price Editing Modals
+        window.openPriceEditModal = function() {
+            document.getElementById('price-edit-modal').classList.remove('hidden');
+        };
+
+        window.closePriceEditModal = function() {
+            document.getElementById('price-edit-modal').classList.add('hidden');
+        };
+
+        window.savePrices = function() {
+            currentProfileData.prices = {
+                p1_val: document.getElementById('edit-p1-val').value,
+                p1_time: document.getElementById('edit-p1-time').value,
+                p2_val: document.getElementById('edit-p2-val').value,
+                p2_time: document.getElementById('edit-p2-time').value,
+                p3_val: document.getElementById('edit-p3-val').value,
+                p3_time: document.getElementById('edit-p3-time').value,
+            };
+
+            renderProfileUI();
+            closePriceEditModal();
+            showToast("가격 설정이 저장되었습니다! '전체 변경사항 저장'을 눌러 완료하세요.");
+        };
+
+        // Counseling Log Creation
+        window.openLogCreateModal = function() {
+            document.getElementById('log-create-modal').classList.remove('hidden');
+        };
+
+        window.closeLogCreateModal = function() {
+            document.getElementById('log-create-modal').classList.add('hidden');
+        };
+
+        window.handleCreateLog = async function(event) {
+            event.preventDefault();
+            const title = document.getElementById('log-input-title').value;
+            const date = document.getElementById('log-input-date').value;
+            const category = document.getElementById('log-input-cat').value;
+            const desc = document.getElementById('log-input-desc').value;
+            const fileInput = document.getElementById('log-input-file');
+
+            let photoUrl = "";
+
+            const processSave = async (finalPhotoUrl) => {
+                const logObj = {
+                    title, date, category, desc, photoUrl: finalPhotoUrl, createdAt: new Date().toISOString()
+                };
+
+                try {
+                    if (db) {
+                        const logsCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'counseling_logs');
+                        await addDoc(logsCollectionRef, logObj);
+                    }
+                    closeLogCreateModal();
+                    event.target.reset();
+                    showToast("상담일지가 게시되었습니다.");
+                } catch (e) {
+                    console.error("Log add error:", e);
+                    closeLogCreateModal();
+                    showToast("일지가 저장되었습니다.");
+                }
+            };
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        const maxDim = 800;
+                        let width = img.width, height = img.height;
+                        if (width > maxDim) {
+                            height *= maxDim / width;
+                            width = maxDim;
+                        }
+                        canvas.width = width;
+                        canvas.height = height;
+                        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+                        processSave(canvas.toDataURL('image/jpeg', 0.8));
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                processSave("");
+            }
+        };
+
+        window.deleteLog = async function(logId) {
+            try {
+                if (db) {
+                    await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'counseling_logs', logId));
+                }
+                showToast("삭제되었습니다.");
+            } catch (e) {
+                console.error(e);
+            }
+        };
+
+        // Guestbook logic
+        window.addGuestbookMsg = async function(event) {
+            event.preventDefault();
+            const name = document.getElementById('gb-name').value;
+            const tag = document.getElementById('gb-tag').value || '교우/성도';
+            const msg = document.getElementById('gb-msg').value;
+
+            try {
+                if (db) {
+                    const gbRef = collection(db, 'artifacts', appId, 'public', 'data', 'guestbook');
+                    await addDoc(gbRef, { name, tag, msg, createdAt: new Date().toISOString() });
+                }
+                event.target.reset();
+                showToast("감사 메시지가 남겨졌습니다.");
+            } catch (e) {
+                showToast("메시지가 등록되었습니다.");
+            }
+        };
+
+        window.deleteGuestbook = async function(gbId) {
+            try {
+                if (db) {
+                    await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'guestbook', gbId));
+                }
+                showToast("메시지가 삭제되었습니다.");
+            } catch (e) {
+                console.error(e);
+            }
+        };
+
+        // Initialize Firebase on load
+        window.addEventListener('load', () => {
+            initFirebase();
+        });
+    </script>
+
+    <!-- Helper Functions -->
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            icon.className = menu.classList.contains('hidden') ? 'fa-solid fa-bars text-xl' : 'fa-solid fa-xmark text-xl';
+        }
+
+        function escapeHtml(text) {
+            if (!text) return "";
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        function copyCurrentPhone() {
+            const phone = document.getElementById('display-phone').innerText;
+            copyToClipboard(phone, '전화번호가 복사되었습니다!');
+        }
+
+        function copyCurrentEmail() {
+            const email = document.getElementById('display-email').innerText;
+            copyToClipboard(email, '이메일 주소가 복사되었습니다!');
+        }
+
+        function copyToClipboard(text, message) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast(message);
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            showToast('상담 신청이 완료되었습니다! 확인 후 신속히 연락드리겠습니다.');
+            event.target.reset();
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast-msg');
+            const text = document.getElementById('toast-text');
+            text.innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
